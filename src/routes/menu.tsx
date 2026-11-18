@@ -59,14 +59,14 @@ function Menu() {
 
   return (
     <main className="mx-auto min-h-screen w-full max-w-lg px-4 pb-10">
-      <header className="relative -mx-4 flex h-44 items-center justify-center rounded-b-3xl bg-cream">
-        <Button type="button" variant="secondary" size="icon" onClick={() => setWheel(true)} aria-label="Şans Çarkı" title="Şans Çarkı" className="absolute left-4 top-4 size-11 rounded-full [&_svg]:size-6"><FerrisWheel strokeWidth={1.75} /></Button>
+      <header className="relative -mx-4 h-44 overflow-hidden rounded-b-3xl bg-cream">
+        <Button type="button" variant="secondary" size="icon" onClick={() => setWheel(true)} aria-label="Şans Çarkı" title="Şans Çarkı" className="absolute left-4 top-4 z-10 size-11 rounded-full [&_svg]:size-6"><FerrisWheel strokeWidth={1.75} /></Button>
         <img
           src={logoAsset.url}
           alt="Ummasbun Coffee"
           width={1024}
           height={398}
-          className="h-24 w-auto max-w-full rounded-2xl object-contain"
+          className="absolute inset-0 h-full w-full object-cover object-top"
         />
       </header>
 

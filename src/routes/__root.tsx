@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     // twitter:image here: every page without its own would inherit the root's preview image.
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" },
       { title: "Kahve Menüsü" },
       { name: "description", content: "Sıcak ve soğuk kahveler menüsü" },
       { property: "og:type", content: "website" },
@@ -120,6 +120,18 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  // Block pinch zoom (iOS Safari ignores user-scalable=no) and double-tap zoom.
+  useEffect(() => {
+    const block = (e: Event) => e.preventDefault();
+    const pinch = (e: TouchEvent) => { if (e.touches.length > 1) e.preventDefault(); };
+    document.addEventListener("gesturestart", block, { passive: false });
+    document.addEventListener("touchmove", pinch, { passive: false });
+    return () => {
+      document.removeEventListener("gesturestart", block);
+      document.removeEventListener("touchmove", pinch);
+    };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

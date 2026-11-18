@@ -37,7 +37,7 @@ function Menu() {
   const { data } = useSuspenseQuery(menuQuery);
   const CATEGORIES = useMemo(() => [{ id: "all", label: "Tümü" }, ...data.categories.map((c) => ({ id: c.id, label: c.name }))], [data]);
   const ITEMS: Item[] = useMemo(() => data.items.map((i) => ({ id: i.id, name: i.name, category: i.category_id, price: Number(i.price), old: i.old_price == null ? undefined : Number(i.old_price), img: menuImage(i.image), desc: i.description })), [data]);
-  const [category, setCategory] = useState(data.categories[0]?.id ?? "all");
+  const [category, setCategory] = useState("all");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState("default");
   const [showSort, setShowSort] = useState(false);

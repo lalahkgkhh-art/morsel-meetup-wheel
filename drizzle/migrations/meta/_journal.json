@@ -8,6 +8,13 @@
       "when": 1795006823768,
       "tag": "0000_import_menu_wheel",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795009038611,
+      "tag": "0001_lock_wheel_settings_reads",
+      "breakpoints": true
     }
   ]
 }
